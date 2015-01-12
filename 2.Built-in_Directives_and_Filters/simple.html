@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-<html ng-app="store">
-	<head>
-		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
-	</head>
-	<body ng-controller="StoreController as store"> 
-	    <!-- ng-controller is the directive -->
-	    <!-- StoreController is the controller name -->
-	    <!-- store is an alias -->
-		<div ng-repeat="product in store.products">
-		    <h1> {{product.name}} </h1>
-		    <h2> {{product.price | currency}} </h2>
-		    <p> {{product.description}} </p>
-		    <button ng-show="store.product.canPurchase"> Add to Cart </button>
-		    <!-- button will only show up if expression is true 
-		    btw, Falsey is a thing, if canPurchase doens't exist -->
-		</div>
-	    <section ng-controller="PanelController as panel">
-			<ul class="nav nav-pills">
-				<li ng-class="{ active: panel.isSelected(1) }"> 
-				    <a href ng-click="panel.selectTab(1)">Description</a> 
-				</li>
-				<li ng-class="{ active:tab === 2 }"> 
-				    <a href ng-click="panel.selectTab(2)">Specifications</a> 
-				</li>
-				<li ng-class="{ active:tab === 3 }"> 
-				    <a href ng-click="panel.selectTab(3)">Reviews</a> 
-				</li>
-			</ul>
-	    </section>
-	{{panel.tab}}
-	    <div class="panel" ng-show="panel.isSelected(1)">
-			<h4>Description</h4>
-			<p>{{product.description}}</p>
-	    </div>
+<html ng-app="gemStore">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="../angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body class="list-group" ng-controller="StoreController as store">
+    <header>
+      <h1 class="text-center">Flatlander Crafted Gems</h1>
+      <h2 class="text-center">– an Angular store –</h2>
+    </header>
+    <div class="list-group-item" ng-repeat="product in store.products">
+      <h3>
+        {{product.name}}
+        <em class="pull-right">{{product.price | currency}}</em>
+      </h3>
+      <section ng-show="product.images.length">
+        <img ng-src="{{product.images[0]}}" />
+        <ul class="list-inline thumbs">
+          <li class="thumbnail" ng-repeat="image in product.images">
+            <img ng-src="{{image}}" />
+          </li>
+        </ul>
+      </section>
 
-	    <div class="panel" ng-show="tab === 2">
-			<h4>Specifications</h4>
-			<blockquote>None yet</blockquote>	
-	    </div>
-
-	    <div class="panel" ng-show="tab === 3">
-			<h4>Reviews</h4>
-			<blockquote>None yet</blockquote>	
-	    </div>
-
-			<script type="text/javascript" src="../angular.min.js"></script>
-			<script type="text/javascript" src="app.js"></script>
-	</body>
+      <section class="tab" ng-controller='TabController as tab'>
+        <ul class="nav nav-pills">
+          <li ng-class="{active: tab.isSet(1)}">
+            <a href ng-click='tab.setTab(1)'>Description</a></li>
+          <li ng-class="{active: tab.isSet(2)}">
+            <a href ng-click='tab.setTab(2)'>Specs</a></li>
+          <li ng-class="{active: tab.isSet(3)}">
+            <a href ng-click='tab.setTab(3)'>Reviews</a></li>
+        </ul>
+        <div ng-show='tab.isSet(1)'>
+          <h4>Description</h4>
+          <blockquote>{{product.description}}</blockquote>
+        </div>
+        <div ng-show='tab.isSet(2)'>
+          <h4>Specs</h4>
+          <blockquote>Shine: {{product.shine}}</blockquote>
+        </div>
+        <div ng-show='tab.isSet(3)'>
+          <h4>Reviews</h4>
+          <blockquote></blockquote>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
