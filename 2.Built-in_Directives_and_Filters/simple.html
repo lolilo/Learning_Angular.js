@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="store">
 	<head>
-		<link rel="stylesheet" type="text/css" href="../bootstrap.min.css"
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"
 />
 	</head>
 	<body ng-controller="StoreController as store"> 
@@ -16,14 +16,35 @@
 		    <!-- button will only show up if expression is true 
 		    btw, Falsey is a thing, if canPurchase doens't exist -->
 		</div>
-    <section>
+    <section ng-init="tab = 1">
 		<ul class="nav nav-pills">
-			<li> <a href ng-click="tab = 1">Description</a> </li>
-			<li> <a href ng-click="tab = 2">Specifications</a> </li>
-			<li> <a href ng-click="tab = 3">Reviews</a> </li>
+			<li ng-class="{ active:tab === 1 }"> 
+				<a href ng-click="tab = 1">Description</a> 
+			</li>
+			<li ng-class="{ active:tab === 2 }"> 
+				<a href ng-click="tab = 2">Specifications</a> 
+			</li>
+			<li ng-class="{ active:tab === 3 }"> 
+			    <a href ng-click="tab = 3">Reviews</a> 
+			</li>
 		</ul>
-		{{tab}}
     </section>
+
+    <div class="panel" ng-show="tab === 1">
+	<h4>Description</h4>
+	<p>{{product.description}}</p>
+    </div>
+
+    <div class="panel" ng-show="tab === 2">
+	<h4>Specifications</h4>
+	<blockquote>None yet</blockquote>	
+    </div>
+
+    <div class="panel" ng-show="tab === 3">
+	<h4>Reviews</h4>
+	<blockquote>None yet</blockquote>	
+    </div>
+
 		<script type="text/javascript" src="../angular.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 	</body>
