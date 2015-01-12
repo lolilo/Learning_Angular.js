@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="store">
+	<head>
+		<link rel="stylesheet" type="text/css" href="../bootstrap.min.css"
+/>
+	</head>
+	    <body ng-controller="StoreController as store"> 
+	    <!-- ng-controller is the directive -->
+	    <!-- StoreController is the controller name -->
+	    <!-- store is an alias -->
+		<div ng-repeat="product in store.products">
+		    <h1> {{product.name}} </h1>
+		    <h2> {{product.price | currency}} </h2>
+		    <p> {{product.description}} </p>
+		    <button ng-show="store.product.canPurchase"> Add to Cart </button>
+		    <!-- button will only show up if expression is true 
+		    btw, Falsey is a thing, if canPurchase doens't exist -->
+		</div>
+		<script type="text/javascript" src="../angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		<p>{{"Hello " + "you!"}}</p>
+	</body>
+</html>
