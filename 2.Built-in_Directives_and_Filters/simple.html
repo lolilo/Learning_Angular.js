@@ -4,7 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="../bootstrap.min.css"
 />
 	</head>
-	    <body ng-controller="StoreController as store"> 
+	<body ng-controller="StoreController as store"> 
 	    <!-- ng-controller is the directive -->
 	    <!-- StoreController is the controller name -->
 	    <!-- store is an alias -->
@@ -16,8 +16,15 @@
 		    <!-- button will only show up if expression is true 
 		    btw, Falsey is a thing, if canPurchase doens't exist -->
 		</div>
+    <section>
+		<ul class="nav nav-pills">
+			<li> <a href ng-click="tab = 1">Description</a> </li>
+			<li> <a href ng-click="tab = 2">Specifications</a> </li>
+			<li> <a href ng-click="tab = 3">Reviews</a> </li>
+		</ul>
+		{{tab}}
+    </section>
 		<script type="text/javascript" src="../angular.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>
-		<p>{{"Hello " + "you!"}}</p>
 	</body>
 </html>
