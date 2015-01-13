@@ -4,6 +4,15 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="../angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <style>
+    .ng-invalid.ng-dirty {
+      border-color: red;
+    }
+
+    .ng-valid.ng-dirty {
+      border-color: green;
+    }
+    </style>
   </head>
 
   <body ng-controller="StoreController as store">
